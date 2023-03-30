@@ -1,9 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using DaprWorkflowAnalysis.Exceptions;
 using DurableTask.Core;
 using Microsoft.Extensions.Logging;
 
-namespace DTFDemo.DtfWorkflow.Activities
+namespace DaprWorkflowAnalysis.DtfWorkflow.Activities
 {
     public class DtfActivity : TaskActivity<string, string>
     {
@@ -21,7 +20,7 @@ namespace DTFDemo.DtfWorkflow.Activities
 
         protected override Task<string> ExecuteAsync(TaskContext context, string input)
         {
-            this._logger.LogInformation($"Executed Activity started by orchestration with Id : {context.OrchestrationInstance.InstanceId}");
+            _logger.LogInformation($"Executed Activity started by orchestration with Id : {context.OrchestrationInstance.InstanceId}");
             return Task.FromResult("Completed");
         }
     }

@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using DaprWorkflowAnalysis.DtfWorkflow.Activities;
 using DTFDemo.DtfWorkflow.Activities;
 using DTFDemo.WorkflowApp.Dto;
 using DurableTask.Core;
 using Microsoft.Extensions.Logging;
 
-namespace DTFDemo.DtfWorkflow.SubOrchestrators
+namespace DaprWorkflowAnalysis.DtfWorkflow.SubOrchestrators
 {
     public class DtfSubOrchestration : TaskOrchestration<string, WorkflowRequest, string, string>
     {
@@ -20,13 +19,24 @@ namespace DTFDemo.DtfWorkflow.SubOrchestrators
         {
             var activityIteration = 0;
             var scheduledActivities = new List<Task>();
-            while (activityIteration < input.NumberOfParallelActivities)
+            try
             {
-                scheduledActivities.Add(context.ScheduleTask<string>(typeof(DtfActivity), "execute"));
-                activityIteration++;
+                while (activityIteration < input.NumberOfParallelActivities)
+                {
+                    scheduledActivities.Add(context.ScheduleTask<string>(typeof(DtfActivity), "execute"));
+                    activityIteration++;
+                }
+
+                await Task.WhenAll(scheduledActivities.ToArray());
+                await context.ScheduleTask<string>(typeof(DtfLoggingActivity),
+                    $"Finished executing sub-orchestration with InstanceId : {context.OrchestrationInstance.InstanceId}");
             }
-            await Task.WhenAll(scheduledActivities.ToArray());
-            await context.ScheduleTask<string>(typeof(DtfLoggingActivity),$"Finished executing sub-orchestration with InstanceId : {context.OrchestrationInstance.InstanceId}");
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Caught Exception in parent orchestration of type: " + e.GetType() );
+                throw;
+            }
+
             return "Completed";
 
         }

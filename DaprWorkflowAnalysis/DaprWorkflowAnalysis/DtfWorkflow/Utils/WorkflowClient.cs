@@ -1,6 +1,7 @@
-﻿using System;
+﻿using DaprWorkflowAnalysis.DtfWorkflow.Activities;
+using DaprWorkflowAnalysis.DtfWorkflow.SubOrchestrators;
 using DTFDemo.DtfWorkflow.Activities;
-using DTFDemo.DtfWorkflow.SubOrchestrators;
+using DTFDemo.DtfWorkflow.Utils;
 using DTFDemo.WorkflowApp.Utils;
 using DurableTask.Core;
 using DurableTask.SqlServer;
@@ -9,7 +10,7 @@ using Microsoft.Extensions.Logging;
 using NLog;
 using NLog.Web;
 
-namespace DTFDemo.DtfWorkflow.Utils
+namespace DaprWorkflowAnalysis.DtfWorkflow.Utils
 {
     public class WorkflowClient : IWorkflowClient
     {
@@ -22,13 +23,14 @@ namespace DTFDemo.DtfWorkflow.Utils
                 {
                     builder.AddNLogWeb(LogManager.Setup().LoadConfigurationFromAppSettings().LogFactory.Configuration);
                 });
-            string storageConnectionString = config.GetValue<string>("SqlConnectionString");
+            string? storageConnectionString = config.GetValue<string>("SqlConnectionString");
             var sqlOrchestrationSettings = new SqlOrchestrationServiceSettings(storageConnectionString, "TaskHub1");
             var orchestrationServiceAndClient = new SqlOrchestrationService(sqlOrchestrationSettings);
 
             var taskHubClient = new TaskHubClient(orchestrationServiceAndClient, loggerFactory: loggerFactory);
             orchestrationServiceAndClient.CreateIfNotExistsAsync().Wait();
             var taskHub = new TaskHubWorker(orchestrationServiceAndClient, loggerFactory);
+            taskHub.ErrorPropagationMode = ErrorPropagationMode.UseFailureDetails;
             taskHub.AddTaskOrchestrations(
                            new ServiceProviderObjectCreator<TaskOrchestration>(typeof(MainDtfOrchestration), serviceProvider),
                            new ServiceProviderObjectCreator<TaskOrchestration>(typeof(DtfSubOrchestration), serviceProvider));

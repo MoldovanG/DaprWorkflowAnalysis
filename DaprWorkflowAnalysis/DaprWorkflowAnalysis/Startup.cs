@@ -1,18 +1,20 @@
 using Dapr.Workflow;
+using DaprWorkflowAnalysis.DtfWorkflow;
+using DaprWorkflowAnalysis.DtfWorkflow.Activities;
+using DaprWorkflowAnalysis.DtfWorkflow.SubOrchestrators;
+using DaprWorkflowAnalysis.DtfWorkflow.Utils;
 using DTFDemo.DaprWorkflow;
 using DTFDemo.DaprWorkflow.Activities;
 using DTFDemo.DaprWorkflow.SubWorkflows;
+using DTFDemo.DtfWorkflow.Activities;
+using DTFDemo.DtfWorkflow.Utils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using DTFDemo.DtfWorkflow;
-using DTFDemo.DtfWorkflow.Activities;
-using DTFDemo.DtfWorkflow.SubOrchestrators;
-using DTFDemo.DtfWorkflow.Utils;
 
-namespace DTFDemo
+namespace DaprWorkflowAnalysis
 {
     public class Startup
     {

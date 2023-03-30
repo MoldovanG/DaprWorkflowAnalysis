@@ -4,6 +4,7 @@ using DurableTask.Core;
 using Microsoft.AspNetCore.Mvc;
 using Dapr.Client;
 using Dapr.Workflow;
+using DaprWorkflowAnalysis.DtfWorkflow;
 using DTFDemo.DaprWorkflow;
 using DTFDemo.DtfWorkflow;
 using DTFDemo.DtfWorkflow.Utils;

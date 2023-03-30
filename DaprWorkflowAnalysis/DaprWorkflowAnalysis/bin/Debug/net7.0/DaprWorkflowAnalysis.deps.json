@@ -9,6 +9,7 @@
       "DaprWorkflowAnalysis/1.0.0": {
         "dependencies": {
           "Dapr.Workflow": "1.10.0",
+          "Microsoft.Azure.DurableTask.Core": "2.12.1",
           "Microsoft.DurableTask.SqlServer": "1.1.1",
           "NLog": "5.1.2",
           "NLog.Web": "5.2.2",
@@ -158,7 +159,7 @@
           }
         }
       },
-      "Microsoft.Azure.DurableTask.Core/2.11.1": {
+      "Microsoft.Azure.DurableTask.Core/2.12.1": {
         "dependencies": {
           "Castle.Core": "5.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
@@ -169,8 +170,8 @@
         },
         "runtime": {
           "lib/netstandard2.0/DurableTask.Core.dll": {
-            "assemblyVersion": "2.11.0.0",
-            "fileVersion": "2.11.1.3317"
+            "assemblyVersion": "2.12.0.0",
+            "fileVersion": "2.12.1.3423"
           }
         }
       },
@@ -245,7 +246,7 @@
       },
       "Microsoft.DurableTask.Abstractions/1.0.0": {
         "dependencies": {
-          "Microsoft.Azure.DurableTask.Core": "2.11.1",
+          "Microsoft.Azure.DurableTask.Core": "2.12.1",
           "Microsoft.Bcl.AsyncInterfaces": "6.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
@@ -298,7 +299,7 @@
       },
       "Microsoft.DurableTask.SqlServer/1.1.1": {
         "dependencies": {
-          "Microsoft.Azure.DurableTask.Core": "2.11.1",
+          "Microsoft.Azure.DurableTask.Core": "2.12.1",
           "Microsoft.Data.SqlClient": "3.0.0",
           "SemanticVersion": "2.1.0",
           "System.Threading.Channels": "4.7.1"
@@ -868,12 +869,12 @@
       "path": "grpc.net.common/2.50.0",
       "hashPath": "grpc.net.common.2.50.0.nupkg.sha512"
     },
-    "Microsoft.Azure.DurableTask.Core/2.11.1": {
+    "Microsoft.Azure.DurableTask.Core/2.12.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-p3V82RC6rZjAsIBJvlgfSPkJEI8Unqm52Qy515h1oWF4C882LyWDWGqIff2cZy/XFiEabbCbODgj9rkUkUvwQg==",
-      "path": "microsoft.azure.durabletask.core/2.11.1",
-      "hashPath": "microsoft.azure.durabletask.core.2.11.1.nupkg.sha512"
+      "sha512": "sha512-OjiVqtjjS/wKsl8+kGWZ8cPq3HARhpg5A5lFyVr5X4f+vWgUl41bxA+e6q1gTg9Lz0bn/2x7riK9RLs1oJmtOg==",
+      "path": "microsoft.azure.durabletask.core/2.12.1",
+      "hashPath": "microsoft.azure.durabletask.core.2.12.1.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
       "type": "package",
