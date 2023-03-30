@@ -1,7 +1,7 @@
 # Dapr Workflow vs DTF workflow with ASP.NET analysis
 
 This Dapr workflow example shows how to create a Dapr workflow (`Workflow`) and invoke it using the console.
-
+Demo application used for analysing the built-in DTF provided within Dapr vs a self-hosted DTFx app with SqlServerProvider : https://medium.com/@george.alexandru.moldovan/dapr-workflows-vs-self-hosted-dtfx-12f789695896
 ## Prerequisites
 
 - [.NET 6+](https://dotnet.microsoft.com/download) installed
