@@ -21,7 +21,13 @@ namespace DaprWorkflowAnalysis.DtfWorkflow.Utils
             var loggerFactory = LoggerFactory.Create(
                 builder =>
                 {
-                    builder.AddNLogWeb(LogManager.Setup().LoadConfigurationFromAppSettings().LogFactory.Configuration);
+                    // Console logging requires Microsoft.Extensions.Logging.Console 
+                    builder.AddSimpleConsole(options =>
+                    {
+                        options.SingleLine = true;
+                        options.UseUtcTimestamp = true;
+                        options.TimestampFormat = "yyyy-mm-ddThh:mm:ss.ffffffZ ";
+                    });
                 });
             string? storageConnectionString = config.GetValue<string>("SqlConnectionString");
             var sqlOrchestrationSettings = new SqlOrchestrationServiceSettings(storageConnectionString, "TaskHub1");
